@@ -12,7 +12,10 @@ function useQuery() {
 export default function MintPage() {
     const [imageSource, setImageSource] = useState('')
     const [imageCaption, setImageCaption] = useState('')
+    const [loggedInUser, setLoggedInUser] = useState(null)
     const [showModal, setShowModal] = useState(false)
+    const [wasInitialized, setWasInitialized] = useState(false)
+
     const query = useQuery()
     console.log(query)
     const imgURL: any = query.get("imgURL")
@@ -24,12 +27,35 @@ export default function MintPage() {
             setImageCaption(caption)
         }
     }, [imgURL, caption])
-    const handleDesoLogin = async () => {
 
-        const request: any = 3
-        const response = await deso.identity.login(request)
-        console.log(response)
+    const initUserStuff = async () => {
+        const loggedInPubicKey: any = localStorage.getItem('loggedInKey')
+        setLoggedInUser(loggedInPubicKey)
+        console.log("Yup checked!!!")
+        setWasInitialized(true)
     }
+    const handleMint = async () => {
+
+    }
+    useEffect(() => {
+
+
+        initUserStuff()
+
+    }, []);
+
+
+    const handleDesoLogin = async () => {
+        const loginType: any = 4
+        const response2: any = await deso.identity.login(loginType);
+        if (response2.key) {
+            localStorage.setItem("loggedInKey", response2.key);
+            setLoggedInUser(response2.key);
+
+
+        }
+    };
+
     return (
         <div>
             <NavBar />
@@ -63,7 +89,7 @@ export default function MintPage() {
                                 {/*header*/}
                                 <div className='flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t'>
                                     <h3 className='text-3xl font-semibold'>
-                                        Predict the price by getting a ticket.
+                                        {!loggedInUser && 'Login with Deso required'}
                                     </h3>
                                     <button
                                         className='p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none'
@@ -77,9 +103,27 @@ export default function MintPage() {
                                 <div className='relative p-6 flex-auto'>
 
                                     <p className='overflow-clip'>
-                                        You need to login with you Deso Identity to participate
-                                        in the quest
+                                        {!loggedInUser && 'You need to Login with Deso Identity to mint this meme!'}
+                                        {loggedInUser && 'Your are about to mint this meme with your Deso Address:'}
+                                        {loggedInUser && <p className='text-sm px-2 py-1 bg-gray-200 rounded-lg'>{loggedInUser}</p>}
                                     </p>
+                                    <div className="flex justify-center my-7 flex-col items-center">
+                                        {loggedInUser && <h1>{`Caption: ${imageCaption}`}</h1>}
+                                        {loggedInUser && <img src={imgURL} className='w-48 rounded-xl shadow-xl my-3'></img>}
+                                    </div>
+                                    <div className='flex justify-center mt-7'>
+
+                                        {!loggedInUser &&
+                                            <button className='px-6 py-3 bg-gray-900 hover:bg-gray-800 rounded-md shadown-md text-white'
+                                                onClick={handleDesoLogin}
+                                            >Login with Deso</button>}
+
+                                        {loggedInUser && <button className='px-6 py-3 bg-green-600 hover:bg-green-700 rounded-md shadown-md text-white'
+                                            onClick={handleMint}
+                                        >Yeah. Mint it!</button>}
+                                    </div>
+
+
 
 
 
