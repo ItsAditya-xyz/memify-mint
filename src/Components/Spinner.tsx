@@ -1,6 +1,6 @@
 import React from "react";
 // Code for spinnner/loader
-export default function Loader() {
+export default function Spinner() {
   return (
     <div className='text-center'>
       <svg

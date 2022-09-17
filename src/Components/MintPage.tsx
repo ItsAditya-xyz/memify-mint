@@ -3,6 +3,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import Deso from 'deso-protocol'
 import NavBar from './Navbar'
+import Spinner from './Spinner'
 const deso = new Deso()
 function useQuery() {
     const { search } = useLocation();
@@ -15,18 +16,22 @@ export default function MintPage() {
     const [loggedInUser, setLoggedInUser] = useState(null)
     const [showModal, setShowModal] = useState(false)
     const [wasInitialized, setWasInitialized] = useState(false)
-
+    const [isMinting, setIsMinting] = useState(false)
+    const [mintedPostHashHex, setMintedPostHashHex] = useState('')
+    const [isMinted, setIsMinted] = useState(false)
     const query = useQuery()
     console.log(query)
-    const imgURL: any = query.get("imgURL")
-    const caption: any = query.get('caption')
+    let imgURL: any = query.get("imgURL")
+    let caption: any = query.get('caption')
     console.log(`imgURL: ${imgURL} and caption: ${caption}`)
     useEffect(() => {
-        if (imgURL && caption) {
+        if (imgURL || caption) {
+            setImageCaption(caption ? caption : "")
             setImageSource(imgURL)
-            setImageCaption(caption)
+            console.log("yup just updateddd")
         }
-    }, [imgURL, caption])
+
+    }, [imgURL.caption])
 
     const initUserStuff = async () => {
         const loggedInPubicKey: any = localStorage.getItem('loggedInKey')
@@ -35,6 +40,48 @@ export default function MintPage() {
         setWasInitialized(true)
     }
     const handleMint = async () => {
+        try {
+
+
+            if (isMinting) {
+                return
+            }
+            setIsMinting(true)
+            const loggedInPubicKey: any = localStorage.getItem('loggedInKey')
+
+
+            const request4 = {
+                "UpdaterPublicKeyBase58Check": loggedInPubicKey,
+                "BodyObj": {
+                    "Body": `${imageCaption}\nMeme Minted using Memify!`,
+                    "VideoURLs": [],
+                    "ImageURLs": [imageSource]
+                }
+            };
+            const response3 = await deso.posts.submitPost(request4);
+            console.log(response3)
+            const madePostHashHex: any = response3.submittedTransactionResponse.PostEntryResponse.PostHashHex
+            setMintedPostHashHex(madePostHashHex)
+
+            const request5 = {
+                "UpdaterPublicKeyBase58Check": loggedInPubicKey,
+                "NFTPostHashHex": madePostHashHex,
+                "NumCopies": 1,
+                "NFTRoyaltyToCreatorBasisPoints": 100,
+                "NFTRoyaltyToCoinBasisPoints": 100,
+                "HasUnlockable": false,
+                "IsForSale": true,
+                "MinFeeRateNanosPerKB": 1000
+            };
+            const response4 = await deso.nft.createNft(request5);
+
+            setIsMinting(false)
+            setIsMinted(true)
+
+        } catch (e) {
+            alert(`Something Went Wrong! Make sure you have enough gas fees\nError:${e}`)
+        }
+
 
     }
     useEffect(() => {
@@ -70,7 +117,7 @@ export default function MintPage() {
                             className='w-96 h-10 px-4 py-2 mb-4 text-lg border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500'
                         ></input>
                     </div>
-                    <img src={imgURL} alt='meme' className='w-50 h-auto shadow-lg rounded-md  ' />
+                    <img src={imageSource} alt='meme' className='w-50 h-auto shadow-lg rounded-md  ' />
                     <button className='my-6 px-6 py-3 bg-gray-900 hover:bg-gray-800 rounded-md shadown-md text-white'
 
                         onClick={
@@ -90,6 +137,8 @@ export default function MintPage() {
                                 <div className='flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t'>
                                     <h3 className='text-3xl font-semibold'>
                                         {!loggedInUser && 'Login with Deso required'}
+                                        {loggedInUser && !isMinted && 'Mint this Meme'}
+                                        {isMinted && 'Minted!'}
                                     </h3>
                                     <button
                                         className='p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none'
@@ -103,9 +152,11 @@ export default function MintPage() {
                                 <div className='relative p-6 flex-auto'>
 
                                     <p className='overflow-clip'>
-                                        {!loggedInUser && 'You need to Login with Deso Identity to mint this meme!'}
-                                        {loggedInUser && 'Your are about to mint this meme with your Deso Address:'}
-                                        {loggedInUser && <p className='text-sm px-2 py-1 bg-gray-200 rounded-lg'>{loggedInUser}</p>}
+                                        {!loggedInUser && !isMinted && 'You need to Login with Deso Identity to mint this meme!'}
+                                        {loggedInUser && !isMinted && 'Your are about to mint this meme with your Deso Address:'}
+                                        {loggedInUser && !isMinted && <span className='text-sm px-2 py-1 bg-gray-200 rounded-lg'>{loggedInUser}</span>}
+
+                                        {isMinted && 'Your meme has been minted! 🎉'}
                                     </p>
                                     <div className="flex justify-center my-7 flex-col items-center">
                                         {loggedInUser && <h1>{`Caption: ${imageCaption}`}</h1>}
@@ -118,10 +169,17 @@ export default function MintPage() {
                                                 onClick={handleDesoLogin}
                                             >Login with Deso</button>}
 
-                                        {loggedInUser && <button className='px-6 py-3 bg-green-600 hover:bg-green-700 rounded-md shadown-md text-white'
+                                        {loggedInUser && !isMinted && <button className='px-6 py-3 bg-green-600 hover:bg-green-700 rounded-md shadown-md text-white'
                                             onClick={handleMint}
-                                        >Yeah. Mint it!</button>}
+                                        >{!isMinting ? `Yeah. Mint it!` : "Minting..."}</button>}
+                                        {isMinted && <a className='text-blue-500 underline '
+                                            href={`https://node.deso.org/posts/${mintedPostHashHex}`} 
+                                            target="_blank">View Meme NFT</a>}
+
                                     </div>
+                                    {isMinting && <div className=' flex justify-center '>
+                                        <Spinner />
+                                    </div>}
 
 
 
@@ -129,14 +187,23 @@ export default function MintPage() {
 
                                 </div>
                                 {/*footer*/}
-                                <div className='flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b'>
-                                    <button
-                                        className='text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
-                                        type='button'
-                                        onClick={() => setShowModal(false)}>
-                                        Close
-                                    </button>
-
+                                <div className='flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b  '>
+                                    {loggedInUser && !isMinting && <button className='text-red-500 underline font-bold text-sm'
+                                        onClick={
+                                            () => {
+                                                localStorage.removeItem('loggedInKey')
+                                                setLoggedInUser(null)
+                                            }
+                                        }
+                                    >Logout</button>}
+                                    {!isMinting &&
+                                        <button
+                                            className='text-red-500 background-transparent font-bold uppercase px-6 text-sm outline-none focus:outline-none  ease-linear transition-all duration-150'
+                                            type='button'
+                                            onClick={() => setShowModal(false)}>
+                                            Close
+                                        </button>
+                                    }
 
                                 </div>
                             </div>
