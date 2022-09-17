@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.gradient{
+  background: linear-gradient(90deg, #00c3ff 0%, #036f8f 100%);
+ 
+  width: 100vw;
+  
+  justify-content: center;
+  align-items: center;
+}
