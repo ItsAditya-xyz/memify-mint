@@ -1,21 +1,21 @@
 import { useState } from "react";
-// import logo from "../assets/logo2.svg"
+import logo from "../assets/logo.svg"
 import { Link } from "react-router-dom";
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
 
   return (
-    <nav className='w-full  shadow-md fixed gradient'>
+    <nav className='w-full  shadow-sm fixed '>
       <div className='justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8'>
         <div>
           <div className='flex items-center justify-between py-3  md:block'>
             <div className="flex items-center space-x-1">
 
-           
-            {/* <img src = {logo} alt='logo' className='w-auto h-14 '/> */}
-            <a href='/'>
-              <h2 className='text-2xl font-bold'>Memify</h2>
-            </a>
+
+              <img src={logo} alt='logo' className='w-auto h-14 ' />
+              <a href='/'>
+
+              </a>
             </div>
             <div className='md:hidden'>
               <button
@@ -54,17 +54,13 @@ export default function NavBar() {
         </div>
         <div>
           <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-              navbar ? "block" : "hidden"
-            }`}>
+            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
+              }`}>
             <ul className='items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0'>
-             
 
-              <li className='py-3 rounded-md bg-green-500 '>
-               <Link className="px-4 py-2 primaryColor text-white rounded-md "
-               to="/home">Discover Latest Memes</Link>
-              </li>
-             
+
+
+
             </ul>
           </div>
         </div>

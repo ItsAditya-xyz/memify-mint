@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="462.16mm" height="214.44mm" version="1.1" viewBox="0 0 462.16 214.44" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(-13.18,268.12)">
+<circle cx="120.4" cy="-160.9" r="107.22" fill="#f2f2f2"/>
+<g transform="matrix(1.3768,0,0,1.3768,313.09,61.592)" fill="#1a1a1a">
+<path d="m-192.54-119.92-0.25241-87.841 55.027 32.057 54.522-32.057 0.50483 88.598-19.941-0.25241-0.75725-52.25-34.329 18.679-34.834-18.931-0.25241 52.25z"/>
+<path d="m-184.09-128.63v-63.988l45.561 26.378 46.192-25.873 0.25241 63.861h-2.398v-59.823l-43.542 25.115-43.92-24.863v59.318z"/>
+<circle cx="-160.02" cy="-156.06" r="4.8191"/>
+<circle cx="-113.08" cy="-156.06" r="4.8191"/>
+<path d="m-157.59-137.15a21.657 18.562 0 0 0 21.48 16.242 21.657 18.562 0 0 0 21.481-16.242z"/>
+<circle cx="-158.51" cy="-153.48" r="1.7849"/>
+<circle cx="-114.51" cy="-153.48" r="1.7849"/>
+</g>
+<text transform="matrix(.97543 0 0 .97543 234.88 -110.65)" fill="#1a1a1a" font-family="'MS Gothic'" font-size="105.04px" letter-spacing=".005425px" style="line-height:2.35;shape-inside:url(#rect12690);white-space:pre" xml:space="preserve"><tspan x="0" y="0"><tspan font-family="Calibri" font-weight="bold">emify</tspan></tspan></text>
+</g>
+</svg>
