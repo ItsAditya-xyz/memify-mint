@@ -1,46 +1,32 @@
-# Getting Started with Create React App
+## Inspiration
+write something here
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## What it does
+- Memify is a platform where you can discover funny viral memes of the Internet, edit its caption and mint them as NFT. Minting as NFT is really not required but why not just do some impractical things?
+- The landing page and the whole discovery feed of memes is built using Wix and Velo. And we are using Deso Blockchain for minting the memes as NFT
 
-## Available Scripts
+## How we built it
+- For the first time we used Wix and Velo, which was a new tech for all of us still we achieved it using the documentation and by doing mistakes
 
-In the project directory, you can run:
+## Challenges we ran into
+- Since we used Wix for the first time so we didn't knew where to start from. Had a hard time in doing what we exactly wanted to do
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Accomplishments that we're proud of
+- We were able to execute what we thought of initially and liked it
+- We were able to use and understand Wix and Velo, which was new to us all along
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## What we learned
+- We learnt Wix along with Velo
+- We learnt blockchain **DeSo** along the way
+- We learnt to divide the work among us and work as a team
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## What's next for Memify
+We think Memfiy can be what people say about "Meme Economy" can be. A platform where people can discover memes, make new ones, monetize their meme creation with NFT and many more exciting stuffs!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Project Page: https://klausmikhaelson200.wixsite.com/website-1
+GithubPage: https://github.com/ItsAditya-xyz/memify-mint
+Demo Video: https://www.youtube.com/watch?v=uAfy8iSiltI
