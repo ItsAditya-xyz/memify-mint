@@ -1,5 +1,5 @@
 ## Inspiration
-write something here
+We all love memes. How about a platform wheree you can discover trending memes of the Internet based on topic and mint them as NFT after change in caption? Sounds cool, unpractical and not needed as why would anyone want to mint NFT of their memes?
 
 ## What it does
 - Memify is a platform where you can discover funny viral memes of the Internet, edit its caption and mint them as NFT. Minting as NFT is really not required but why not just do some impractical things?
