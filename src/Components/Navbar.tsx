@@ -11,7 +11,7 @@ export default function NavBar() {
           <div className='flex items-center justify-between py-3  md:block'>
             <div className="flex items-center space-x-1">
 
-            <a href='https://klausmikhaelson200.wixsite.com/memify'>
+            <a href='https://klausmikhaelson200.wixsite.com/website-1'>
               <img src={logo} alt='logo' className='w-auto h-14 ' />
              
 
