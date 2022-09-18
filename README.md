@@ -1,3 +1,6 @@
+This is repo for Meme Minting page where memes are minted on Deso Blockchain.
+More about the overall project:
+
 ## Inspiration
 We all love memes. How about a platform where you can discover trending memes of the Internet based on topic and mint them as NFT after change in caption? Sounds cool, unpractical and not needed as why would anyone want to mint NFT of their memes? Welcome to the Meme Economy of 21st century!
 
