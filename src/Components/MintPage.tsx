@@ -122,7 +122,7 @@ export default function MintPage() {
                     
                     style={{
 
-                        width: '500px',
+                        maxWidth: '500px',
                     }}
                         />
                     <button className='my-6 px-6 py-3 bg-gray-900 hover:bg-gray-800 rounded-md shadown-md text-white'
@@ -133,7 +133,7 @@ export default function MintPage() {
                                     alert("Please enter a caption")
                                     return
                                 }
-                                
+
                                 setShowModal(true)
                             }
                         }>Mint this Meme</button>
@@ -176,7 +176,7 @@ export default function MintPage() {
 
                                             style={{
 
-                                                width: '300px',
+                                                maxWidth: '300px',
                                             }}></img>}
                                     </div>
                                     <div className='flex justify-center mt-7'>
