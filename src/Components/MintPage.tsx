@@ -117,7 +117,13 @@ export default function MintPage() {
                             className='w-96 h-10 px-4 py-2 mb-4 text-lg border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500'
                         ></input>
                     </div>
-                    <img src={imageSource} alt='meme' className='w-50 h-auto shadow-lg rounded-md  ' />
+                    <img src={imageSource} alt='meme' className='w-50 h-auto shadow-lg rounded-md  ' 
+                    
+                    style={{
+
+                        width: '500px',
+                    }}
+                        />
                     <button className='my-6 px-6 py-3 bg-gray-900 hover:bg-gray-800 rounded-md shadown-md text-white'
 
                         onClick={
@@ -160,7 +166,12 @@ export default function MintPage() {
                                     </p>
                                     <div className="flex justify-center my-7 flex-col items-center">
                                         {loggedInUser && <h1>{`Caption: ${imageCaption}`}</h1>}
-                                        {loggedInUser && <img src={imgURL} className='w-48 rounded-xl shadow-xl my-3'></img>}
+                                        {loggedInUser && <img src={imgURL} className=' rounded-xl shadow-xl my-3'
+
+                                            style={{
+
+                                                width: '300px',
+                                            }}></img>}
                                     </div>
                                     <div className='flex justify-center mt-7'>
 
@@ -173,7 +184,7 @@ export default function MintPage() {
                                             onClick={handleMint}
                                         >{!isMinting ? `Yeah. Mint it!` : "Minting..."}</button>}
                                         {isMinted && <a className='text-blue-500 underline '
-                                            href={`https://node.deso.org/posts/${mintedPostHashHex}`} 
+                                            href={`https://node.deso.org/posts/${mintedPostHashHex}`}
                                             target="_blank">View Meme NFT</a>}
 
                                     </div>
