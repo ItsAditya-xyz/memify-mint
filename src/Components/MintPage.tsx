@@ -46,6 +46,7 @@ export default function MintPage() {
             if (isMinting) {
                 return
             }
+           
             setIsMinting(true)
             const loggedInPubicKey: any = localStorage.getItem('loggedInKey')
 
@@ -109,7 +110,7 @@ export default function MintPage() {
             <div className='pt-20'>
                 {/* <button onClick={handleDesoLogin} >Login with deso</button> */}
                 <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-baseline space-x-2 justify-center my-4'>
+                    <div className='flex items-baseline space-x-2 justify-center my-4 flex-wrap'>
                         <p className='text-lg font-semibold'>Caption:</p>
                         <input
                             value={imageCaption}
@@ -128,6 +129,11 @@ export default function MintPage() {
 
                         onClick={
                             () => {
+                                if(!imageCaption){
+                                    alert("Please enter a caption")
+                                    return
+                                }
+                                
                                 setShowModal(true)
                             }
                         }>Mint this Meme</button>
